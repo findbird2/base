@@ -82,4 +82,5 @@
         <maven-assembly-plugin.version>2.4.1</maven-assembly-plugin.version>
     </properties>
 
+
 </project>
