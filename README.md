@@ -6,6 +6,8 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-Test
-https://sfera.inno.local/knowledge/pages?id=1772040
-Test
+      <groupId>io.github.agebhar1</groupId>
+      <artifactId>micrometer-certs-expiration</artifactId>
+      <version>0.1.0</version>
+    </dependency>
+    <dependency>
