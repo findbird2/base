@@ -8,3 +8,4 @@ Deeplearning4J used
 
 Test
 https://sfera.inno.local/knowledge/pages?id=1772040
+Test
