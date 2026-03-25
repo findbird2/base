@@ -6,21 +6,16 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-<tsau.audit.lib.version>6.0.0.5</tsau.audit.lib.version>
+    private FindIdApiGetByPeriodPost200ResponseResults getByPeriod(LocalDateTime dateFrom,
+                                                                  LocalDateTime dateTo) {
+        var offset = LocalDateTime.now()
+                                  .atZone(ZoneId.systemDefault())
+                                  .getOffset();
+        var request = new FindIdApiGetByPeriodPostRequest();
+        request.dateFrom(dateFrom.atOffset(offset));
+        request.dateTo(dateTo.atOffset(offset));
 
-        <dependency>
-            <groupId>ru.vtb.omni</groupId>
-            <artifactId>tsau-audit-lib-in-memory-storage</artifactId>
-            <version>${tsau.audit.lib.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ru.vtb.omni</groupId>
-            <artifactId>tsau-audit-lib-kafka-sender</artifactId>
-            <version>${tsau.audit.lib.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ru.vtb.omni</groupId>
-            <artifactId>tsau-audit-lib-template-context</artifactId>
-            <version>${tsau.audit.lib.version}</version>
-        </dependency>
+        log.info("[{}] Requesting data for the period from {} to {}", LogTag.FID_MESSAGE, dateFrom, dateTo);
+        return auditSender.sendResult(AUDIT_GETBYPERIOD, () -> getData(request));
+    }
 
