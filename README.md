@@ -6,16 +6,5 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-    private FindIdApiGetByPeriodPost200ResponseResults getByPeriod(LocalDateTime dateFrom,
-                                                                  LocalDateTime dateTo) {
-        var offset = LocalDateTime.now()
-                                  .atZone(ZoneId.systemDefault())
-                                  .getOffset();
-        var request = new FindIdApiGetByPeriodPostRequest();
-        request.dateFrom(dateFrom.atOffset(offset));
-        request.dateTo(dateTo.atOffset(offset));
-
-        log.info("[{}] Requesting data for the period from {} to {}", LogTag.FID_MESSAGE, dateFrom, dateTo);
-        return auditSender.sendResult(AUDIT_GETBYPERIOD, () -> getData(request));
-    }
+2026-03-24 09:19:00[main]INFO  o.apache.kafka.clients.NetworkClient - [Consumer clientId=get-device-id-consumer, groupId=null] Node -3 disconnected.
 
