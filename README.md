@@ -6,4 +6,4 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile (default-compile) on project get-device-id: Fatal error compiling: error: release version 21 not supported -> [Help 1]  
+Вот по ошибке проекта GetDevice - нашёл в доках, что Необходимо в настройках Кафки Аудита убрать group-id - как раз у нас ругается, что null - но что-то в ConfigMaps не нашел. Может знаешь где эта настройка?
