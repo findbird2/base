@@ -6,12 +6,20 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-[2026-03-31 12:57:45,137] WARN An exception was thrown while closing send thread for session 0x10005982cc10000. (org.apache.zookeeper.ClientCnxn)
+[2026-03-31 12:57:46,085] ERROR Exiting Kafka due to fatal exception (kafka.Kafka$)
 
-EndOfStreamException: Unable to read additional data from server sessionid 0x10005982cc10000, likely server has closed socket
+java.lang.IllegalArgumentException: requirement failed: inter.broker.listener.name must be a listener name defined in advertised.listeners. The valid options based on currently configured listeners are SSL
 
-	at org.apache.zookeeper.ClientCnxnSocketNIO.doIO(ClientCnxnSocketNIO.java:77)
+	at scala.Predef$.require(Predef.scala:337)
 
-	at org.apache.zookeeper.ClientCnxnSocketNIO.doTransport(ClientCnxnSocketNIO.java:350)
+	at kafka.server.KafkaConfig.validateValues(KafkaConfig.scala:2315)
 
-	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1290)
+	at kafka.server.KafkaConfig.<init>(KafkaConfig.scala:2160)
+
+	at kafka.server.KafkaConfig.<init>(KafkaConfig.scala:1569)
+
+	at kafka.Kafka$.buildServer(Kafka.scala:72)
+
+	at kafka.Kafka$.main(Kafka.scala:91)
+
+	at kafka.Kafka.main(Kafka.scala)
