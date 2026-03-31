@@ -6,4 +6,4 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.6:repackage (default) on project get-device-id: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:3.5.6:repackage failed: Plugin org.springframework.boot:spring-boot-maven-plugin:3.5.6 or one of its dependencies could not be resolved:   
+docker run -d --name "my_zookeeper" -p 82181:2181 -e ZOOKEEPER_CLIENT_PORT=2181 confluentinc/cp-zookeeper:7.5.0
