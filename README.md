@@ -6,13 +6,15 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-package ru.vtb.spm.afsnotificationadapter.config.kafka.osn;
-
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
+    consumer:
+      sms:
+        bootstrapServers: localhost:29092
+        groupId: afs
+        clientId: 408
+        poolSize: 1
+        rate-limit: 100
+        topic: unp
+        ssl:
 import org.springframework.validation.annotation.Validated;
 
 @Configuration
