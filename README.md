@@ -6,4 +6,45 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-rg.springframework.beans.factory.BeanCreationException: Error creating bean with name 'osnKafkaConsumerService' defined in file [C:\Books\projects\notification adapter\notif_Adap_FormDevelope_03042026\notification-adapter-module\target\classes\ru\vtb\spm\afsnotificationadapter\service\kafka\consumer\OsnKafkaConsumerService.class]: Error creating bean with name 'osnKafkaListenerContainerFactory' defined in class path resource [ru/vtb/spm/afsnotificationadapter/config/kafka/osn/OsnKafkaConsumerConfig.class]: Failed to instantiate [org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory]: Factory method 'osnKafkaListenerContainerFactory' threw exception with message: Cannot invoke "ru.vtb.spm.afsnotificationadapter.config.kafka.osn.OsnKafkaProperties$Consumer.getBootstrap()" because the return value of "ru.vtb.spm.afsnotificationadapter.config.kafka.osn.OsnKafkaProperties.getConsumer()" is null
+package ru.vtb.spm.afsnotificationadapter.config.kafka.osn;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.annotation.Validated;
+
+@Configuration
+@ConfigurationProperties(prefix = "osn.kafka.sms")
+@Data
+@Validated
+public class OsnKafkaProperties {
+
+    @Valid
+    private Consumer consumer;
+
+    @Data
+    public static class Consumer {
+
+        @NotNull(message = "Необходимо указать хост для консьюмера Kafka OSN (1378)")
+        private String bootstrap;
+        @NotNull(message = "Необходимо указать ID группы консьюмеров для Kafka OSN (1378)")
+        private String groupId;
+        @NotNull(message = "Необходимо указать топик для консьюмера Kafka OSN (1378)")
+        private String topic;
+        private Ssl ssl;
+
+        @Data
+        public static class Ssl {
+
+            private boolean enabled;
+            private String trustStorePath;
+            private String trustStorePassword;
+            private String keyStorePath;
+            private String keyStorePassword;
+        }
+    }
+
+
+}
