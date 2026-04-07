@@ -6,4 +6,4 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-docker run -d --name redis --memory=512m -p 26379:6379 redis:8.6 redis-server --requirepass password --maxmemory 256mb --maxmemory-policy allkeys-lru
+docker exec -it redis redis-cli -u redis://default:password@localhost:6379 ping
