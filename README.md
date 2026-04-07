@@ -6,4 +6,9 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
+redis:
+  master: localhost:26379
+  sentinel-nodes:
+    - localhost:26379
+  username: default
+  password: password
