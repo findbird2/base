@@ -6,5 +6,4 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-private RedisURI.Builder createBaseRedisUriBuilder() {
-        HostAndPort firstNode = parseHostAndPort(redisProperties.getSentinelNodes().getFirst());
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to localhost/<unresolved>:6379
