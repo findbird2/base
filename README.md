@@ -6,14 +6,21 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-    public Future<SpmResponseDto> process(SpmRequestDto dto) {
-       return executorService.submit(() -> {
-                transactionMilestoneManagerKafkaSms.commitData(dto);
-                return SpmResponseDto.builder()
-                        .success(true)
-                        .httpStatus(HttpStatus.OK)
-                        .message(REQUEST_SUCCESSFUL)
-                        .xMessageId(dto.getXMessageID())
-                        .build();
-        });
+    private void saveResponse(String clientId, OsnKafkaResponseDto osnKafkaResponseDto) {
+        //TODO Проверить наличие элементов в osnKafkaResponseDto
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        SmsStatusEntity smsStatusEntity = new SmsStatusEntity();
+        smsStatusEntity.setXMessageIdSms(osnKafkaResponseDto.getId());
+        smsStatusEntity.setStatus(osnKafkaResponseDto.getStatus());
+        smsStatusEntity.setDeliveryMethod(osnKafkaResponseDto.getDeliveryMethod());
+        smsStatusEntity.setSource(osnKafkaResponseDto.getSource());
+        smsStatusEntity.setClientId(osnKafkaResponseDto.getClientId());
+        smsStatusEntity.setPhone(osnKafkaResponseDto.getPhone());
+        smsStatusEntity.setCreated(LocalDateTime.now());
+        smsStatusEntity.setTimeDelivery(
+                LocalDateTime.parse(osnKafkaResponseDto.getTimeDelivery(), formatter));
+
+        smsStatusRepository.save(smsStatusEntity);
+
     }
