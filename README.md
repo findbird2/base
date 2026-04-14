@@ -6,26 +6,27 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-@Service
 @Slf4j
+@Service
 @RequiredArgsConstructor
-public class ServerMetricsExecutor {
-    private final CpuUsageService cpuUsageService;
-    private final MemoryUsageService memoryUsageService;
-    private final DiskUsageService diskUsageService;
-    private final NetworkDownloadingUnloadingSpeedService networkDownloadingUnloadingSpeedService;
-    private final ApplicationService applicationService;
+public class ApplicationDiscovery implements ConsoleCommand {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ScriptConfig scriptConfig;
 
-    private final ApplicationDiscovery applicationDiscovery;
-
-    @PostConstruct
-    public void getCpuUsage() {
-        var app =  applicationDiscovery.getResultCommand();
-        var cpu = cpuUsageService.getResultCommand();
-        var mem = memoryUsageService.getResultCommand();
-        var disk = diskUsageService.getResultCommand();
-        log.info("Тест запроса: " + app.toString());
-        log.info(cpu.toString());
+    @Override
+    public ApplicationDiscoveryConsole getResultCommand() {
+        var discoveryResult = executeCommand(
+                ExecuteCommandTypeUtils.getExecuteCommandType(), scriptConfig.getDiscoveryCommand()
+        );
+        log.info("Discovery result: {}", discoveryResult.getOutput());
+        ApplicationDiscoveryConsole discoveryConsole = new ApplicationDiscoveryConsole();
+        try {
+            return discoveryConsole.convertToObject(discoveryResult, objectMapper);
+        } catch (JsonProcessingException e) {
+            throw new ConversionException("Не получилось сделать объект из json", e);
+        }
+    }
+}
         log.info(mem.toString());
         log.info(disk.toString());
     }
