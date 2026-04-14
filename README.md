@@ -6,4 +6,6 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-java -jar liquibase.jar --driver=org.postgresql.Driver --classpath=postgresql-42.2.19.jar --changeLogFile=changelog-master.xml --url="jdbc:postgresql://localhost:5432/notification_adapter?currentSchema=notification_adapter&socketTimeout=30000" --username=postgres --password=postgres --liquibaseSchemaName=public --defaultSchemaName=notification_adapter --databaseChangeLogLockTableName=notification_adapter_databaseChangeLogLock --databaseChangeLogTableName=notification_adapter_databaseChangeLog update
+Unexpected error running Liquibase: Migration failed for change set ../db/changelog/release-1.0/20260414/changelog_20260414.xml::1775821214339-2::IYTarasov (generated):
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "notification_adapter.sms_status" не существует [Failed SQL: (0) ALTER TABLE notification_adapter.sms_status ALTER COLUMN  client_id DROP NOT NULL]
+For more information, please use the --logLevel flag
