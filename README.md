@@ -6,21 +6,4 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-    private void saveResponse(String clientId, OsnKafkaResponseDto osnKafkaResponseDto) {
-        //TODO Проверить наличие элементов в osnKafkaResponseDto
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-        SmsStatusEntity smsStatusEntity = new SmsStatusEntity();
-        smsStatusEntity.setXMessageIdSms(osnKafkaResponseDto.getId());
-        smsStatusEntity.setStatus(osnKafkaResponseDto.getStatus());
-        smsStatusEntity.setDeliveryMethod(osnKafkaResponseDto.getDeliveryMethod());
-        smsStatusEntity.setSource(osnKafkaResponseDto.getSource());
-        smsStatusEntity.setClientId(osnKafkaResponseDto.getClientId());
-        smsStatusEntity.setPhone(osnKafkaResponseDto.getPhone());
-        smsStatusEntity.setCreated(LocalDateTime.now());
-        smsStatusEntity.setTimeDelivery(
-                LocalDateTime.parse(osnKafkaResponseDto.getTimeDelivery(), formatter));
-
-        smsStatusRepository.save(smsStatusEntity);
-
-    }
+    org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'agentServiceImpl' defined in file [C:\Books\projects\admin_console\2026\adm_parent\admc_parent_07022026\spm-admin-console-agent\target\classes\com\vtb\spm\spmadminconsoleagent\grpc\AgentServiceImpl.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'serverMetricsExecutor': Invocation of init method failed
