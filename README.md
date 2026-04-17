@@ -6,6 +6,21 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-Unexpected error running Liquibase: Migration failed for change set ../db/changelog/release-1.0/20260414/changelog_20260414.xml::1775821214339-2::IYTarasov (generated):
-     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "notification_adapter.sms_status" не существует [Failed SQL: (0) ALTER TABLE notification_adapter.sms_status ALTER COLUMN  client_id DROP NOT NULL]
-For more information, please use the --logLevel flag
+   private OsnKafkaSmsResponseStatus waitForStatus(CompletableFuture<OsnKafkaSmsResponseStatus> statusFuture,
+                                                    String requestId)
+            throws InterruptedException, ExecutionException {
+        Duration timeout = afsKafkaSmsConnectionProperties.getDelayForStatusFromOsn();
+        long timeoutMs = (timeout == null || timeout.isNegative() || timeout.isZero())
+                ? 1000L
+                : timeout.toMillis();
+        try {
+            //TODO Здесь не дождались статуса из Kafka
+            return statusFuture.get(timeoutMs, TimeUnit.MILLISECONDS);
+        } catch (TimeoutException e) {
+            log.warn("[{}][{}] Не дождались статуса из Kafka за {} мс.",
+                     LogTag.KAFKA_SMS,
+                     requestId,
+                     timeoutMs);
+            return OsnKafkaSmsResponseStatus.UNKNOWN;
+        }
+    }
