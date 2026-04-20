@@ -6,8 +6,7 @@ Hydroaccustic signals are represented by the spectre of the signal
 
 Deeplearning4J used
 
-2026-04-20 16:30:01.023]  Started by user Тарасов Игорь Юрьевич (4111617) - ООО "ГК Иннотех"
-[2026-04-20 16:30:01.024]  Running as Тарасов Игорь Юрьевич (4111617) - ООО "ГК Иннотех"
+
 [2026-04-20 16:30:01.161]  Obtained jenkins/pipelines/cd/Deploy/pipeline.Jenkinsfile from git ssh://git@git.sfera.test.vtb.ru:7999/AFS_DEPLOY/dp6.git
 [2026-04-20 16:30:01.161]  Resume disabled by user, switching to high-performance, low-durability mode.
 [2026-04-20 16:30:01.208]  Loading library global_ppor_start_finish_deployment_lib@master
